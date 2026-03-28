@@ -63,7 +63,7 @@ class DuetThumbnailCamera(CoordinatorEntity[DuetDataUpdateCoordinator], Camera):
         job_thumbnail = self.coordinator.get_sensor_state(
             SENSOR_TYPES[self.camera_name]["json_path"], self.camera_name
         )
-        return len(job_thumbnail) > 0
+        return job_thumbnail is not None and len(job_thumbnail) > 0
 
     async def async_camera_image(
         self, width: int | None = None, height: int | None = None
